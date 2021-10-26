@@ -1,1 +1,1 @@
-## React and Redux Boilerplater :sparkles:
+## React, Redux and tailwindcss Boilerplater :sparkles:
