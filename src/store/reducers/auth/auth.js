@@ -1,5 +1,5 @@
-import * as actionTypes from '../../constants/actionTypes';
-import { updateObject } from '../../constants/utility';
+import * as actionTypes from '../../../constants/actionTypes';
+import { updateObject } from '../../../constants/utility';
 
 const initialState = {
     loading: false,
