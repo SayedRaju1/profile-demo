@@ -1,6 +1,7 @@
 // this is home page
 
-import React from 'react'
+import React from 'react';
+import withErrorModal from '../../components/HOC/withErrorModal/withErrorModal';
 
 function Home() {
     return (
@@ -10,4 +11,4 @@ function Home() {
     )
 }
 
-export default Home
+export default withErrorModal(Home);

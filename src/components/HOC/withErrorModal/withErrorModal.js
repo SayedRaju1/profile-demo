@@ -1,7 +1,7 @@
 import React from 'react';
-import Modal from "../../components/UI/Modal/Modal";
+import Modal from '../../UI/Modal/Modal';
 import { useSelector, useDispatch } from "react-redux";
-import { closeErrorModal } from "../../store/actions/index";
+import { closeErrorModal } from "../../../store/actions/index";
 
 const withErrorModal = (WrappedComponent) => {
     return (props) => {
