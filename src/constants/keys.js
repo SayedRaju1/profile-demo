@@ -1,1 +1,1 @@
-export const LOCAL_AUTH_KEY = "LOCAL_AUTH_KEY";
+export const LOCAL_USER_KEY = "LOCAL_USER_KEY";
