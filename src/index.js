@@ -6,6 +6,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
+import 'flowbite';
 
 const app = (
   <React.StrictMode>

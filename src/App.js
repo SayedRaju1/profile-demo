@@ -12,10 +12,9 @@ function App() {
     <Router>
       <HeaderMerchants />
       <Switch>
-        <Route path="/Login" component={Login} />
         <Route exact path="/" component={Home} />
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }
