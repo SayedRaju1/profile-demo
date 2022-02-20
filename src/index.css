@@ -30,6 +30,21 @@ body {
   .max-w-70prcnt {
     max-width: 70%;
   }
+  .br {
+    border: 1px solid red;
+  }
+  .bb {
+    border: 1px solid blue;
+  }
+  .bo {
+    border: 1px solid orange;
+  }
+  .bg {
+    border: 1px solid green;
+  }
+  .bt {
+    border: 1px solid tomato;
+  }
   .grid-container {
     display: grid;
     /* grid-template-columns: repeat(5, auto); */
