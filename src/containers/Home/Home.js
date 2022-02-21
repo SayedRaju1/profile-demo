@@ -20,6 +20,8 @@ function Home() {
 
   const users = useSelector((state) => console.log(state.users));
 
+  console.log(users);
+
   return (
     <div className="py-20">
       <div className="grid grid-cols-12 place-items-center px-5 2xl:px-10 gap-4 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg 2xl:max-w-screen-2xl mx-auto my-0">
