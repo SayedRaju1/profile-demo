@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import WarningToast from '../Toast/WarningToast';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddModal = ({ showAddModal, setShowAddModal, person }) => {
     const [showWarningToast, setShowWarningToast] = useState(false)
@@ -34,8 +35,7 @@ const AddModal = ({ showAddModal, setShowAddModal, person }) => {
             console.log(name, designation, description);
         }
         else {
-            setShowWarningToast(true)
-            setTimeout(() => setShowWarningToast(false), 5000)
+            toast("Wow so easy!");
         }
     }
 
@@ -78,10 +78,7 @@ const AddModal = ({ showAddModal, setShowAddModal, person }) => {
                     </form>
                 </div>
             </div>
-            {
-                showWarningToast && <WarningToast warningText="Please, fill all the inputs" />
-            }
-
+            <ToastContainer />
         </div>
     );
 };
