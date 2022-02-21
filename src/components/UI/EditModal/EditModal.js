@@ -53,7 +53,7 @@ const EditModal = ({ showEditModal, setShowEditModal, person }) => {
             console.log(name, designation, description);
         }
         else {
-            toast("Wow so easy!");
+            toast.error("Fields cannot be empty");
         }
     }
 
@@ -69,7 +69,7 @@ const EditModal = ({ showEditModal, setShowEditModal, person }) => {
                     </div>
 
                     <div className="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="#">
-                        <h3 className="text-xl font-medium text-gray-900 dark:text-white">Add New Person</h3>
+                        <h3 className="text-xl font-medium text-gray-900 dark:text-white">Edit Person Info</h3>
                         <div className="flex flex-col-reverse md:flex-row">
                             <div className="flex-1">
                                 <div className="py-2">
@@ -128,14 +128,6 @@ const EditModal = ({ showEditModal, setShowEditModal, person }) => {
             </div>
             <ToastContainer
                 position="top-center"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
             />
         </div>
     );

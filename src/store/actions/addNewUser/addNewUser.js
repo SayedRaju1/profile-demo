@@ -20,11 +20,11 @@ const addNewUserFail = (error) => {
     };
 }
 
-export const login = () => {
+export const addNewUserAction = (formData) => {
     return async (dispatch) => {
         dispatch(addNewUserStart());
         try {
-            let response = await postNewUser();
+            let response = await postNewUser(formData);
             dispatch(addNewUserSuccess(response.data));
         } catch (err) {
             dispatch(addNewUserFail({ message: err.message }));

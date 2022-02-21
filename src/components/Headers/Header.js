@@ -5,8 +5,8 @@ import Searchbar from '../UI/SearchBar/Searchbar';
 const Header = () => {
   const [showAddModal, setShowAddModal] = useState(false)
   return (
-    <div className="fixed w-screen bg-white">
-      <nav className="shadow-md mx-auto my-0 px-20 py-2 flex justify-between gap-4 
+    <div className="fixed w-screen bg-white shadow-md">
+      <nav className="mx-auto my-0 px-20 py-2 flex justify-between gap-4 
         sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg 2xl:max-w-screen-2xl">
         <Searchbar />
         <button
