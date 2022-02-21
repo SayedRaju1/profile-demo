@@ -1,16 +1,18 @@
 // external imports
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
 // internal imports
-import authReducer from './auth/auth';
+import authReducer from "./auth/auth";
 
 // error modal reducer
-import errorModalReducer from './errorModal/errorModal';
+import errorModalReducer from "./errorModal/errorModal";
 
+import usersReducer from "./users/users";
 
 const reducers = combineReducers({
-    auth: authReducer,
-    errorModal: errorModalReducer,
+  auth: authReducer,
+  users: usersReducer,
+  errorModal: errorModalReducer,
 });
 
 export default reducers;

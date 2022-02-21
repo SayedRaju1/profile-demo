@@ -5,11 +5,15 @@ import Axios from "../../services/NetworkService";
 
 // testing...
 export const getTodo = () => {
-    console.log("getTodo api call")
-    return Axios.get('/todos/');
-}
+  console.log("getTodo api call");
+  return Axios.get("/todos/");
+};
 
 export const getSingleTodo = () => {
-    console.log("getSingleTodo api call")
-    return Axios.get('/todos/1');
-}
+  console.log("getSingleTodo api call");
+  return Axios.get("/todos/1");
+};
+
+export const getUsers = () => {
+  return Axios.get("/users/all");
+};
