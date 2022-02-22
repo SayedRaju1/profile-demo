@@ -8,12 +8,12 @@ export const LOGOUT = "LOGOUT";
 export const OPEN_ERROR_MODAL = "OPEN_ERROR_MODAL";
 export const CLOSE_ERROR_MODAL = "CLOSE_ERROR_MODAL";
 
-// Auth
+// User Fetch
 export const USER_START = "USER_START";
 export const USER_SUCCESS = "USER_SUCCESS";
 export const USER_FAIL = "USER_FAIL";
 
-
+// Add New User
 export const ADD_NEW_USER_START = "ADD_NEW_USER_START";
 export const ADD_NEW_USER_SUCCESS = "ADD_NEW_USER_SUCCESS";
 export const ADD_NEW_USER_FAIL = "ADD_NEW_USER_FAIL";

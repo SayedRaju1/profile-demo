@@ -8,10 +8,12 @@ import authReducer from "./auth/auth";
 import errorModalReducer from "./errorModal/errorModal";
 
 import usersReducer from "./users/users";
+import newUserAddReducer from "./users/AddNewUser";
 
 const reducers = combineReducers({
   auth: authReducer,
   users: usersReducer,
+  newUserAdd: newUserAddReducer,
   errorModal: errorModalReducer,
 });
 

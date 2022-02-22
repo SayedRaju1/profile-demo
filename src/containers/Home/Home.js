@@ -18,9 +18,11 @@ function Home() {
     dispatch(allUsersData());
   }, []);
 
-  const users = useSelector((state) => console.log(state.users));
+  const users = useSelector((state) => {
+    //things to do
+  });
 
-  console.log(users);
+  //   console.log(users);
 
   return (
     <div className="py-20">

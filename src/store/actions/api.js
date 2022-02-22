@@ -5,23 +5,24 @@ import Axios from "../../services/NetworkService";
 
 // testing...
 export const getTodo = () => {
-    console.log("getTodo api call");
-    return Axios.get("/todos/");
+  console.log("getTodo api call");
+  return Axios.get("/todos/");
 };
 
 export const getSingleTodo = () => {
-    console.log("getSingleTodo api call");
-    return Axios.get("/todos/1");
+  console.log("getSingleTodo api call");
+  return Axios.get("/todos/1");
 };
 
 export const getUsers = () => {
-    return Axios.get("/users/all");
+  return Axios.get("/users/all");
 };
 
 //add new user
 export const postNewUser = (formData) => {
-    return Axios.post("/users",
-        formData,
-        { headers: { 'content-type': 'multipart/form-data' } }
-    );
+  return Axios.post(
+    "/users",
+    formData
+    // { headers: { 'content-type': 'multipart/form-data' } }
+  );
 };
