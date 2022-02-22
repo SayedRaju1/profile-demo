@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 import AddModal from '../UI/AddModal/AddModal';
 import Searchbar from '../UI/SearchBar/Searchbar';
+import { showToast } from '../UI/Toast/ShowToast';
 
 const Header = () => {
   const [showAddModal, setShowAddModal] = useState(false)
@@ -21,9 +23,11 @@ const Header = () => {
           <AddModal
             showAddModal={showAddModal}
             setShowAddModal={setShowAddModal}
+            showToast={showToast}
           />
         }
       </nav >
+      <ToastContainer />
     </div>
   );
 }

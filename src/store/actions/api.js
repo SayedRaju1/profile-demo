@@ -22,7 +22,21 @@ export const getUsers = () => {
 export const postNewUser = (formData) => {
   return Axios.post(
     "/users",
-    formData
-    // { headers: { 'content-type': 'multipart/form-data' } }
+    formData,
+    { headers: { 'content-type': 'multipart/form-data' } }
   );
+};
+
+//edit user
+export const editUser = (formData, userId) => {
+  return Axios.patch(
+    `/users/userupdate/${userId}`,
+    formData,
+    { headers: { 'content-type': 'multipart/form-data' } }
+  );
+};
+
+//delete user 
+export const deleteUser = (userId) => {
+  return Axios.delete(`/users/delete/${userId}`);
 };

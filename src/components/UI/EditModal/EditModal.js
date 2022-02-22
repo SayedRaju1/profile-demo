@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { editUserAction } from '../../../store/actions/editUser/editUser';
 
 const EditModal = ({ showEditModal, setShowEditModal, person }) => {
     const [name, setName] = useState(person.name)
@@ -9,6 +11,7 @@ const EditModal = ({ showEditModal, setShowEditModal, person }) => {
     const fileInputRef = useRef();
     const [image, setImage] = useState(null)
     const [preview, setPreview] = useState("")
+    const dispatch = useDispatch();
 
     // IMAGE UPLOAD HANDLER
     const handleImageUpload = (e) => {
@@ -47,13 +50,45 @@ const EditModal = ({ showEditModal, setShowEditModal, person }) => {
         setDescription(e.target.value);
     }
 
+    console.log("image ", image);
+
+    // submit
+    let formData = new FormData()
     const handleSubmit = (e) => {
+        console.log(name, designation, description, image);
         e.preventDefault();
         if (name && designation && description) {
+            toast.info("Working", {
+                position: "top-center",
+                autoClose: 500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+            });
             console.log(name, designation, description);
+
+            formData.append("name", name)
+            formData.append("designation", designation)
+            formData.append("description", description)
+            formData.append("image", image)
+
+            const response = dispatch(editUserAction(formData, person._id))
+
+            response.then((result) => {
+                console.log({ result });
+                if (result.type === 'EDIT_USER_SUCCESS') {
+                    setShowEditModal(false)
+                    toast.success(result.data.message);
+                }
+                else if (result.type === 'EDIT_USER_FAIL') {
+                    // showToast("error", result.data?.error)
+                    toast.error("Failed");
+                }
+            });
         }
         else {
-            toast.error("Fields cannot be empty");
+            // toast.error("Fields cannot be empty");
+            console.log('else');
         }
     }
 
@@ -94,7 +129,7 @@ const EditModal = ({ showEditModal, setShowEditModal, person }) => {
                                 <div className="w-40 h-40 flex justify-center items-center">
                                     <img
                                         className="max-w-full max-h-full"
-                                        src={image ? preview : person.image}
+                                        src={image ? preview : `https://mahadi-hotel-mgt.herokuapp.com/${person.image}`}
                                         alt="ProfileImage"
                                     />
                                 </div>
