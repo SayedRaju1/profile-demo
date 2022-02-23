@@ -7,8 +7,6 @@ import { allUsersData } from "../../../store/actions/users/users";
 
 const AddModal = ({ showAddModal, setShowAddModal, showToast }) => {
     const isNewUserLoading = useSelector((state) => state.newUserAdd.loading);
-    const [showWarningToast, setShowWarningToast] = useState(false);
-
     const [name, setName] = useState("");
     const [designation, setDesignation] = useState("");
     const [description, setDescription] = useState("");
@@ -52,7 +50,6 @@ const AddModal = ({ showAddModal, setShowAddModal, showToast }) => {
     const handleDescription = (e) => {
         setDescription(e.target.value);
     };
-    console.log(isNewUserLoading);
 
     // SUBMITTING NEW USER
 
@@ -78,7 +75,6 @@ const AddModal = ({ showAddModal, setShowAddModal, showToast }) => {
                 console.log({ result });
                 if (result.type === 'ADD_NEW_USER_SUCCESS') {
                     closeAddModal()
-                    // showToast("success", result.data.message)
                     toast.success(result.data.message, {
                         position: "top-center",
                         hideProgressBar: true,
@@ -86,14 +82,12 @@ const AddModal = ({ showAddModal, setShowAddModal, showToast }) => {
                     dispatch(allUsersData());
                 }
                 else if (result.type === 'ADD_NEW_USER_FAIL') {
-                    // showToast("error", result.error?.message)
                     toast.error(result.error?.message, {
                         position: "top-center",
                         hideProgressBar: true,
                     });
                 }
                 else {
-                    // showToast("error", 'Something went wrong')
                     toast.error('Something went wrong', {
                         position: "top-center",
                         hideProgressBar: true,

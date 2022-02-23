@@ -51,8 +51,6 @@ const EditModal = ({ showEditModal, setShowEditModal, person }) => {
         setDescription(e.target.value);
     }
 
-    console.log("image ", image);
-
     // submit
     let formData = new FormData()
     const handleSubmit = (e) => {
@@ -84,7 +82,6 @@ const EditModal = ({ showEditModal, setShowEditModal, person }) => {
                     });
                 }
                 else if (result.type === 'EDIT_USER_FAIL') {
-                    // showToast("error", result.data?.error)
                     toast.error(result?.error?.message, {
                         position: "top-center",
                         hideProgressBar: true,
@@ -103,7 +100,6 @@ const EditModal = ({ showEditModal, setShowEditModal, person }) => {
     return (
         <div className={`bg-gray-900 bg-opacity-70 overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 flex justify-center items-center h-modal md:h-full md:inset-0`}>
             <div className="relative px-4 w-full max-w-2xl h-full md:h-auto">
-                {/* <!-- Modal content --> */}
                 <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <div className="flex justify-end p-2">
                         <button onClick={closeEditModal} className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="authentication-modal">

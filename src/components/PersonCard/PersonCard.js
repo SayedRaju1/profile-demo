@@ -1,11 +1,47 @@
 import React from 'react';
-import EditModal from '../UI/EditModal/EditModal';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { userDeleteAction } from '../../store/actions/DeleteUser/deleteUser';
+import { allUsersData } from '../../store/actions/users/users';
 
-const PersonCard = ({ person, setShowEditModal, setselectedPerson, handleDelete }) => {
+const PersonCard = ({ person, setShowEditModal, setselectedPerson }) => {
+    const dispatch = useDispatch();
+
     const handleEditButton = () => {
         setShowEditModal(true)
         setselectedPerson(person)
     }
+
+    const handleDelete = (userId) => {
+        toast.info("Working", {
+            position: "top-center",
+            hideProgressBar: true,
+            autoClose: 500,
+        });
+        const response = dispatch(userDeleteAction(userId));
+        response.then((result) => {
+            if (result?.type === 'DELETE_USER_SUCCESS') {
+                dispatch(allUsersData());
+                toast.success(result.data.message, {
+                    position: "top-center",
+                    hideProgressBar: true,
+                });
+            }
+            else if (result?.type === 'DELETE_USER_FAIL') {
+                toast.error(result.error.message, {
+                    position: "top-center",
+                    hideProgressBar: true,
+                });
+            }
+            else {
+                toast.error('Something went wrong', {
+                    position: "top-center",
+                    hideProgressBar: true,
+                });
+            }
+        });
+    }
+
     return (
         <div className="col-span-12  md:col-span-6 lg:col-span-4  2xl:col-span-3 w-full h-80 max-w-md bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
             <div className="flex flex-col items-center pb-6">
