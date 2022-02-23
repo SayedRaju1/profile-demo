@@ -9,7 +9,7 @@ const PersonCard = ({ person, setShowEditModal, setselectedPerson, handleDelete 
     return (
         <div className="col-span-12  md:col-span-6 lg:col-span-4  2xl:col-span-3 w-full h-80 max-w-md bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
             <div className="flex flex-col items-center pb-6">
-                <img className="my-4 w-24 h-24 rounded-full shadow-lg" src={`https://mahadi-hotel-mgt.herokuapp.com/${person && person.image}`} alt="person" />
+                <img className="my-4 w-24 h-24 rounded-full shadow-lg object-cover" src={`https://mahadi-hotel-mgt.herokuapp.com/${person && person.image}`} alt="person" />
                 <h3 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{person && person.name}</h3>
                 <span className="text-sm text-gray-500 dark:text-gray-400">{person && person.designation}</span>
                 <span className="text-center inline-flex items-center overflow-hidden h-16 mt-2 px-5 text-sm text-gray-700 dark:text-gray-400">{person && person.description}</span>
