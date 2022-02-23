@@ -15,23 +15,24 @@ function Home() {
   const [selectedPerson, setselectedPerson] = useState({});
   const users = useSelector((state) => state.users.data?.data);
   const isUsersLoading = useSelector((state) => state.users.loading);
-  const isUserDeleteLoading = useSelector((state) => state.deleteUser.loading);
+  const isUserDeleted = useSelector((state) => state.deleteUser.data);
+  const isUserAdded = useSelector((state) => state.newUserAdd.loading);
+  const isUserEdited = useSelector((state) => state.editUser.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(allUsersData());
-  }, []);
+  }, [dispatch, isUserDeleted, isUserAdded, isUserEdited]);
 
 
-  console.log(users);
+  // console.log(users);
   console.log('isUsersLoading ', isUsersLoading);
-  console.log('isUserDeleteLoading ', isUserDeleteLoading);
 
   const handleDelete = (userId) => {
-    console.log(userId);
+    // console.log(userId);
     const response = dispatch(userDeleteAction(userId));
     response.then((result) => {
-      console.log({ result });
+      // console.log({ result });
       if (result?.type === 'DELETE_USER_SUCCESS') {
         toast.success(result.data.message, {
           position: "top-center",
@@ -44,10 +45,11 @@ function Home() {
       }
     });
   }
+  console.log("users ", users);
   return (
     <div className="py-20">
       <div className="grid grid-cols-12 place-items-center px-5 2xl:px-10 gap-4 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg 2xl:max-w-screen-2xl mx-auto my-0">
-        {users ? users.map((person) => (
+        {users && users.length > 0 ? users.map((person) => (
           <PersonCard
             person={person}
             setShowEditModal={setShowEditModal}

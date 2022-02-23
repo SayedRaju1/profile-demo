@@ -3,19 +3,19 @@ import { deleteUser } from "../api";
 
 const userDeleteStart = () => {
     return {
-        type: actionTypes.USER_START,
+        type: actionTypes.DELETE_USER_START,
     };
 };
 const userDeleteSuccess = (data) => {
     return {
-        type: actionTypes.USER_SUCCESS,
+        type: actionTypes.DELETE_USER_SUCCESS,
         data: data,
     };
 };
 
 const userDeleteFail = (error) => {
     return {
-        type: actionTypes.USER_FAIL,
+        type: actionTypes.DELETE_USER_FAIL,
         error: error,
     };
 };
