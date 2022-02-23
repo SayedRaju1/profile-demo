@@ -25,9 +25,9 @@ export const userDeleteAction = (userId) => {
         dispatch(userDeleteStart());
         try {
             let response = await deleteUser(userId);
-            dispatch(userDeleteSuccess(response.data));
+            return dispatch(userDeleteSuccess(response.data));
         } catch (err) {
-            dispatch(userDeleteFail({ message: err.message }));
+            return dispatch(userDeleteFail({ message: err.message }));
         }
     };
 };

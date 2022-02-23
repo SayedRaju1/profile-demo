@@ -15,32 +15,52 @@ function Home() {
   const [selectedPerson, setselectedPerson] = useState({});
   const users = useSelector((state) => state.users.data?.data);
   const isUsersLoading = useSelector((state) => state.users.loading);
-  const isUserDeleted = useSelector((state) => state.deleteUser.data);
+  const isDeleteLoading = useSelector((state) => state.deleteUser.loading);
   const isUserAdded = useSelector((state) => state.newUserAdd.loading);
   const isUserEdited = useSelector((state) => state.editUser.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(allUsersData());
-  }, [dispatch, isUserDeleted, isUserAdded, isUserEdited]);
+  }, [dispatch]);
 
 
-  // console.log(users);
   console.log('isUsersLoading ', isUsersLoading);
 
+
+  // isUsersLoading ? toast.info("Working", {
+  //   position: "top-center",
+  //   hideProgressBar: true,
+  //   autoClose: false,
+  // }) : null
+
+
+
   const handleDelete = (userId) => {
-    // console.log(userId);
+    toast.info("Working", {
+      position: "top-center",
+      hideProgressBar: true,
+      autoClose: 500,
+    });
     const response = dispatch(userDeleteAction(userId));
     response.then((result) => {
-      // console.log({ result });
       if (result?.type === 'DELETE_USER_SUCCESS') {
+        dispatch(allUsersData());
         toast.success(result.data.message, {
           position: "top-center",
+          hideProgressBar: true,
         });
       }
       else if (result?.type === 'DELETE_USER_FAIL') {
-        toast.error('Something Went Wrong', {
+        toast.error(result.error.message, {
           position: "top-center",
+          hideProgressBar: true,
+        });
+      }
+      else {
+        toast.error('Something went wrong', {
+          position: "top-center",
+          hideProgressBar: true,
         });
       }
     });
@@ -56,9 +76,19 @@ function Home() {
             showEditModal={showEditModal}
             setselectedPerson={setselectedPerson}
             handleDelete={handleDelete}
-            kay={person._id}
+            key={person._id}
           />
-        )) : <p className="inline-flex justify-center items-center">Loading</p>}
+        )) : isUsersLoading ?
+
+          <div className="text-center text-2xl text-gray-600 col-span-12 h-40  flex justify-center items-center">
+            <p>Loading....</p>
+          </div>
+          :
+          <div className="text-center text-2xl text-gray-600 col-span-12 h-40  flex justify-center items-center">
+            <p>List Empty, Add New Person</p>
+          </div>
+        }
+
       </div>
       {showEditModal && (
         <EditModal
@@ -67,9 +97,7 @@ function Home() {
           person={selectedPerson}
         />
       )}
-      <ToastContainer
-        position="top-center"
-      />
+      <ToastContainer />
     </div>
   );
 }

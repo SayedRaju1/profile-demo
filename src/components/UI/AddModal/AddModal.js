@@ -3,8 +3,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addNewUserAction } from "../../../store/actions/addNewUser/addNewUser";
 import { useDispatch, useSelector } from "react-redux";
+import { allUsersData } from "../../../store/actions/users/users";
 
 const AddModal = ({ showAddModal, setShowAddModal, showToast }) => {
+    const isNewUserLoading = useSelector((state) => state.newUserAdd.loading);
     const [showWarningToast, setShowWarningToast] = useState(false);
 
     const [name, setName] = useState("");
@@ -50,7 +52,7 @@ const AddModal = ({ showAddModal, setShowAddModal, showToast }) => {
     const handleDescription = (e) => {
         setDescription(e.target.value);
     };
-
+    console.log(isNewUserLoading);
 
     // SUBMITTING NEW USER
 
@@ -60,13 +62,10 @@ const AddModal = ({ showAddModal, setShowAddModal, showToast }) => {
         e.preventDefault();
 
         if (name && designation && description && image) {
-
             toast.info("Working", {
                 position: "top-center",
+                hideProgressBar: true,
                 autoClose: 500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
             });
 
             formData.append("name", name)
@@ -79,16 +78,33 @@ const AddModal = ({ showAddModal, setShowAddModal, showToast }) => {
                 console.log({ result });
                 if (result.type === 'ADD_NEW_USER_SUCCESS') {
                     closeAddModal()
-                    showToast("success", result.data.message)
+                    // showToast("success", result.data.message)
+                    toast.success(result.data.message, {
+                        position: "top-center",
+                        hideProgressBar: true,
+                    });
+                    dispatch(allUsersData());
                 }
                 else if (result.type === 'ADD_NEW_USER_FAIL') {
-                    showToast("error", result.data?.error)
+                    // showToast("error", result.error?.message)
+                    toast.error(result.error?.message, {
+                        position: "top-center",
+                        hideProgressBar: true,
+                    });
+                }
+                else {
+                    // showToast("error", 'Something went wrong')
+                    toast.error('Something went wrong', {
+                        position: "top-center",
+                        hideProgressBar: true,
+                    });
                 }
             });
 
         } else {
             toast.error("Input Info Missing", {
                 position: "top-center",
+                hideProgressBar: true,
             });
         }
     };
@@ -173,6 +189,7 @@ const AddModal = ({ showAddModal, setShowAddModal, showToast }) => {
                                     </label>
                                     <textarea
                                         onChange={handleDescription}
+                                        maxlength="120"
                                         value={description}
                                         type="text"
                                         name="description"
