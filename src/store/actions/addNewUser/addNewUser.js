@@ -25,9 +25,9 @@ export const addNewUserAction = (formData) => {
         dispatch(addNewUserStart());
         try {
             let response = await postNewUser(formData);
-            dispatch(addNewUserSuccess(response.data));
+            return dispatch(addNewUserSuccess(response.data));
         } catch (err) {
-            dispatch(addNewUserFail({ message: err.message }));
+            return dispatch(addNewUserFail({ message: err.message }));
         }
     };
 }
