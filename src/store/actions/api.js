@@ -14,6 +14,7 @@ export const getSingleTodo = () => {
   return Axios.get("/todos/1");
 };
 
+//get all users
 export const getUsers = () => {
   return Axios.get("/users/all");
 };

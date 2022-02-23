@@ -42,7 +42,6 @@ const EditModal = ({ showEditModal, setShowEditModal, person }) => {
 
     const handleName = (e) => {
         setName(e.target.value);
-        console.log(e.target.value);
     }
     const handleDesignation = (e) => {
         setDesignation(e.target.value);
@@ -54,7 +53,6 @@ const EditModal = ({ showEditModal, setShowEditModal, person }) => {
     // submit
     let formData = new FormData()
     const handleSubmit = (e) => {
-        console.log(name, designation, description, image);
         e.preventDefault();
         if (name && designation && description) {
             toast.info("Working", {
@@ -62,7 +60,6 @@ const EditModal = ({ showEditModal, setShowEditModal, person }) => {
                 autoClose: 500,
                 hideProgressBar: true,
             });
-            console.log(name, designation, description);
 
             formData.append("name", name)
             formData.append("designation", designation)
@@ -72,7 +69,6 @@ const EditModal = ({ showEditModal, setShowEditModal, person }) => {
             const response = dispatch(editUserAction(formData, person._id))
 
             response.then((result) => {
-                console.log({ result });
                 if (result.type === 'EDIT_USER_SUCCESS') {
                     dispatch(allUsersData());
                     setShowEditModal(false)

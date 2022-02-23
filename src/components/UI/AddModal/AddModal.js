@@ -72,7 +72,6 @@ const AddModal = ({ showAddModal, setShowAddModal, showToast }) => {
 
             const response = dispatch(addNewUserAction(formData));
             response.then((result) => {
-                console.log({ result });
                 if (result.type === 'ADD_NEW_USER_SUCCESS') {
                     closeAddModal()
                     toast.success(result.data.message, {
@@ -95,8 +94,27 @@ const AddModal = ({ showAddModal, setShowAddModal, showToast }) => {
                 }
             });
 
-        } else {
-            toast.error("Input Info Missing", {
+        }
+        else if (!name) {
+            toast.error("Please, provide a name", {
+                position: "top-center",
+                hideProgressBar: true,
+            });
+        }
+        else if (!designation) {
+            toast.error("Please, provide a designation", {
+                position: "top-center",
+                hideProgressBar: true,
+            });
+        }
+        else if (!description) {
+            toast.error("Please, provide a description", {
+                position: "top-center",
+                hideProgressBar: true,
+            });
+        }
+        else {
+            toast.error("Please, provide a profile image", {
                 position: "top-center",
                 hideProgressBar: true,
             });
